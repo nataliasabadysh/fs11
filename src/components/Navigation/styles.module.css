@@ -1,0 +1,16 @@
+.menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.item {
+    margin: 2px 30px;
+    position: relative;
+}
+
+.link {
+    display: block;
+    padding: 2px 20px;
+    color: black;
+}
