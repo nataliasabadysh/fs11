@@ -1,12 +1,27 @@
+import { useState } from 'react';
+
 // Component 
-import { Heeader } from './components/HeaderContainer';
+import { Header } from './components/HeaderContainer';
+import { ProductList } from './components/ProductList';
 
 // Instruments
-import './index.css';
+import './theme/index.css';
+
 
 function App() {
+
+  const [count, setCount] = useState(0); // Local State 
+  const [filterValue, setFilterValue] = useState(''); // Local State 
+
+
+  const onIncriment = () => setCount(count + 1);
+
+  console.log('filterValue', filterValue)
+  console.log('count', count)
+
   return <>
-      <Heeader />
+        <Header count={count} onSearch={setFilterValue}/>
+        <ProductList onIncriment={onIncriment} />
     </>
 }
 

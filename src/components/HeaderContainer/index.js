@@ -5,13 +5,12 @@ import Logo from "../Logo";
 // Instruments 
 import { wrapper } from "./inlineStyleExample";
 
-
-export const Heeader = ()=> {
+export const Header = ({ count, onSearch })=> {
     return (
         <div style={wrapper}>
             <Logo />
-            <Search />
-            <Navigation/>
+            <Search onSearch={onSearch} />
+            <Navigation count={count}/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 // Instruments
-import logoImg from '../../theme/images/logo.png';
+// import logoImg from '../../theme/images/logo.png';
 
 function Logo(){
-    return <img src={logoImg} alt="logo app" width="70" height="50"/>
+    return <img src={'https://xl-static.rozetka.com.ua/assets/img/design/logo_n.svg'} alt="logo app"  />
 }
 export default Logo;
