@@ -1,34 +1,49 @@
-import { useState } from 'react';
-
-// Component 
-import { Header } from './components/HeaderContainer';
-import { ProductList } from './components/ProductList';
-import mock from './mock.json';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // Instruments
 import './theme/index.css';
 
 
+export const api = {
+    fetchMovies: (page) => `https://api.themoviedb.org/3/trending/movie/day?api_key=4dce7cd3557cfb8e6e269a90f5961d8a&page=${page}`,
+};
+
+
 function App() {
-  const [selectedGood, setSelectedGood] = useState([]); // Local State 
 
-  const [listGoods, setListGoods] = useState(mock); // Local State 
-  const [filterValue, setFilterValue] = useState(''); // Local State 
+    const [page, setPage] = useState(9);
+    const [listMovies, setListMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const onSelectedOrder = (property) => {
-        setSelectedGood((prev)=>[...prev, property]);
-    }
+    useEffect(()=> {
+        setIsLoading(true);
 
-    const onDelete = (params) => {
-        const orders = selectedGood.filter(item => item.id !== params);
-        setSelectedGood(orders)
-    }
-    const visibleGoods = listGoods.goods.filter(item =>item.name.toLowerCase().includes(filterValue.toLowerCase()))
+        axios.get(api.fetchMovies(page)).then(res=>
+            setListMovies(res.data.results)
+        )
+        .catch((error)=> setError(error))
+        .finally(()=>{
+            setIsLoading(false);
+        })
+    }, [page]);
 
-    return <>
-        <Header onSearch={setFilterValue} selectedGood={selectedGood} onDelete={onDelete} />
-        <ProductList onSelectedOrder={onSelectedOrder} mock={visibleGoods} /> 
-    </>
+    const listJsx = listMovies.map((item) =>
+        <li key={item.id} onClick={()=>setPage(item)}> {item.title}</li>
+    )
+
+
+    return(
+
+        <>
+        {page}
+        <ul>
+        {listJsx}
+        </ul>
+        </>
+
+    )
 }
 
 export default App;
