@@ -13,6 +13,7 @@
     display: block;
     padding: 2px 20px;
     color: black;
+    position: relative;
 }
 
 .count{
