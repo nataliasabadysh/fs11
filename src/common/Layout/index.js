@@ -1,15 +1,18 @@
 // Core
-import React, { useContext } from "react";
+import { useContext } from "react";
 // Instruments
 import { LayoutWrapper } from "./LayoutStyles";
 import { ThemeContext } from "../../context/theme";
 
-export const Layout = ({ children }) => {
-  const context = useContext(ThemeContext);
 
+export const Layout = ({ children, status="off" }) => {
+
+  const { swithTheme, theme } = useContext(ThemeContext);
+
+  // const statusStyle = theme === "light" ? { color:'green'}: { color: 'red'}
   return (
-    <LayoutWrapper >
-      <div onClick={() => context.swithTheme(context.theme)}> {context.theme} </div>
+    <LayoutWrapper theme={theme}>
+      <p onClick={() => swithTheme(theme)}> {theme} </p>
       {children}
     </LayoutWrapper>
   );

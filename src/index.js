@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom';
 
-import App from './App.jsx';
+import { AppExample } from './FormExample';
 import './theme/index.css';
 
 
 ReactDOM.render(
-    <App />,
+    <AppExample />,
   document.getElementById('root')
 );

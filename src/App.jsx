@@ -33,7 +33,7 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedMovie, setSelectedMovie] = useState({})
 
-    console.log('selectedMovie', selectedMovie);
+    console.log('selectedMovie', listMovies);
 
     useEffect(()=> {
         setLoader(true);
@@ -60,6 +60,7 @@ function App() {
             <CardContent onClick={()=> onSelect(item)}>
                     <Typography gutterBottom variant="p">
                     Title: {item.title} {console.log('item', item)}
+                    {console.log('item', item)}
                     <CardMedia
                         component="img"
                         height="194"

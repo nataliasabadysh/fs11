@@ -6,18 +6,19 @@ const Gender = {
   FEMALE: 'female',
 };
 
+const initState = {
+  name: "",
+  email: "",
+  password: '',
+  age:'',
+  agreed: false,
+  gender: Gender.MALE,
+  location: "Kiev"
+}
 
 export const LoginFormExample = () => {
   // from props we will take method as onFormSignUp
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: '',
-    age:'',
-    agreed: false,
-    gender: Gender.MALE,
-    location: "Kiev"
-  });
+  const [form, setForm] = useState(initState);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

@@ -1,15 +1,20 @@
 
 // Instruments
 import './theme/index.css';
+import { ThemeProvider } from './context/theme';
+import { Layout } from './common/Layout';
+import { LoginForm } from './examples/form/example1';
+import { LoginFormExample } from './examples/form/example2';
 
-
-function App() {
+export function AppExample() {
 
     return <ThemeProvider>
-                <Layout>
-                    <Registration />
-                </Layout>
+            <Layout>
+                <LoginFormExample/>
+            </Layout>
         </ThemeProvider>
 }
 
-export default App;
+
+
+{/* <Layout><Registration /> </Layout> */}

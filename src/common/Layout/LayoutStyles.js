@@ -8,6 +8,16 @@ export const LayoutWrapper = styled.div`
   margin: 0 auto;
   padding: 26px 20px;
   max-width: 1240px;
-  background-color: ${(props) =>
-    props.theme === "light" ? "#fff" : "#cbcbcb"};
+  color: ${(props) => props.theme === "light" ? "black" : "#fff"  };
+  background-color: ${(props) => props.theme === "light" ? "#fff" : "black"  };
+`;
+
+
+export const ListGoodsStyle = styled.ul`
+
+`;
+
+
+export const ItemGoodStyle = styled.li`
+
 `;

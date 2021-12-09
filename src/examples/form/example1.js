@@ -1,10 +1,15 @@
 import { useState } from "react";
 
+// FETCH GET /profile/id 
+const USER ={
+  name: 'Natasha',
+  email: 'nama.@'
+}
+
 export const LoginForm = () => {
   // from props we will take method as onFormSignUp
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(USER.name);
+  const [email, setEmail] = useState(USER.email);
 
   const handleChangeName = (e) => {
     const { value } = e.target;
@@ -18,6 +23,9 @@ export const LoginForm = () => {
 
   const onSend = (e) => {
     e.preventDefault();
+
+
+    console.log('loging form',name, email )
   };
 
   return (
