@@ -6,7 +6,7 @@ export const Modal = ({ children, closeModal }) => {
         <div className={styles.Backdrop}>
             <div className={styles.Content}>
                 {children}
-                <Button onClick={closeModal} label="Close" />
+                <button onClick={closeModal}>Close</button>
             </div>
         </div>);
 

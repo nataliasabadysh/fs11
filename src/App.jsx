@@ -3,6 +3,12 @@ import axios from 'axios';
 
 // Instruments
 import './theme/index.css';
+import { Modal } from './components/Modal';
+import { Registration } from './examples/Registration/Registration';
+
+import { Layout } from './common/Layout';
+import { ThemeProvider } from './context/theme';
+import { LoginFormExample } from './examples/form/example2';
 
 
 export const api = {
@@ -12,35 +18,33 @@ export const api = {
 
 function App() {
 
-    const [page, setPage] = useState(9);
+    const [page, setPage] = useState(2);
     const [listMovies, setListMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [loader, setLoader] = useState(false);
     const [error, setError] = useState(null);
+    const [isModalOpen, setIModalOpen] = useState(false)
 
     useEffect(()=> {
-        setIsLoading(true);
+        setLoader(true);
 
-        axios.get(api.fetchMovies(page)).then(res=>
-            setListMovies(res.data.results)
-        )
-        .catch((error)=> setError(error))
-        .finally(()=>{
-            setIsLoading(false);
-        })
+        axios.get(api.fetchMovies(page))
+            .then(res=>setListMovies(res.data.results))
+            .catch((error)=> setError(error))
+            .finally(() => setLoader(false));
     }, [page]);
 
     const listJsx = listMovies.map((item) =>
         <li key={item.id} onClick={()=>setPage(item)}> {item.title}</li>
     )
 
+    const paginationJSX = [1, 2, 3, 4, 5].map(item=> <li key={item} onClick={()=> setPage(item)}>{item}</li>)
 
     return(
 
         <>
-        {page}
-        <ul>
-        {listJsx}
-        </ul>
+            <ul>
+                {listJsx}
+            </ul>
         </>
 
     )
