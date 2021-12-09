@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Pagination, CardMedia } from '@mui/material';
+
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
 
 // Instruments
 import './theme/index.css';
@@ -22,30 +29,66 @@ function App() {
     const [listMovies, setListMovies] = useState([]);
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(null);
-    const [isModalOpen, setIModalOpen] = useState(false)
+
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [selectedMovie, setSelectedMovie] = useState({})
+
+    console.log('selectedMovie', selectedMovie);
 
     useEffect(()=> {
         setLoader(true);
 
         axios.get(api.fetchMovies(page))
-            .then(res=>setListMovies(res.data.results))
+            .then(res=>setListMovies(res.data))
             .catch((error)=> setError(error))
             .finally(() => setLoader(false));
     }, [page]);
 
-    const listJsx = listMovies.map((item) =>
-        <li key={item.id} onClick={()=>setPage(item)}> {item.title}</li>
+
+    const onSelect = (param)=> {
+        setSelectedMovie(param)
+        setIsModalOpen(true)
+    };
+
+    const onClose = ()=> {
+        setIsModalOpen(false)
+    };
+
+
+    const listJsx = listMovies &&  listMovies.results && 
+    listMovies.results.map((item) => <Card key={item.id} sx={{ maxWidth: 250, margin: 10 }}>
+            <CardContent onClick={()=> onSelect(item)}>
+                    <Typography gutterBottom variant="p">
+                    Title: {item.title} {console.log('item', item)}
+                    <CardMedia
+                        component="img"
+                        height="194"
+                        image={`https://image.tmdb.org/t/p/original/${item.poster_path || ''}`}
+                        alt="Paella dish"/>
+
+                </Typography>
+            </CardContent>
+        </Card>
     )
 
-    const paginationJSX = [1, 2, 3, 4, 5].map(item=> <li key={item} onClick={()=> setPage(item)}>{item}</li>)
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+    
 
     return(
 
-        <>
-            <ul>
-                {listJsx}
-            </ul>
-        </>
+        <div>
+            {listJsx}
+
+            {isModalOpen && <Modal onClose={onClose}>
+                <h1>{selectedMovie.title}</h1>
+                {selectedMovie.overview}
+                <p>{selectedMovie.popularity}%</p>
+                <CardMedia component="img" height="194" image={`https://image.tmdb.org/t/p/original/${selectedMovie.poster_path || ''}`} alt={selectedMovie.title}/>
+            </Modal>}
+                <Pagination count={listMovies.total_pages} defaultPage={listMovies.page} color="primary" variant="outlined" onChange={handleChange}/>
+        </div>
 
     )
 }
