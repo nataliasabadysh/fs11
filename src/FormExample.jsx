@@ -3,18 +3,12 @@
 import './theme/index.css';
 import { ThemeProvider } from './context/theme';
 import { Layout } from './common/Layout';
-import { LoginForm } from './examples/form/example1';
-import { LoginFormExample } from './examples/form/example2';
+import { Registration } from './examples/Registration/Registration';
 
-export function AppExample() {
-
+export function FormExample() {
     return <ThemeProvider>
-            <Layout>
-                <LoginFormExample/>
-            </Layout>
+                <Layout>
+                    <Registration />
+                </Layout>
         </ThemeProvider>
 }
-
-
-
-{/* <Layout><Registration /> </Layout> */}

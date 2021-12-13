@@ -1,8 +1,11 @@
 import styles from './styles.module.css';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { ThemeContext } from '../../context/theme';
 
 export const Modal = ({ children, onClose }) => {
     
+    const { swithTheme, theme, name } = useContext(ThemeContext);
+
     const handleEnter = (e) => {
 
         if(e.code === 'Enter'){
@@ -22,6 +25,9 @@ export const Modal = ({ children, onClose }) => {
         <div className={styles.Backdrop}>
             <div className={styles.Content}>
                 {children}
+                <p onClick={() => swithTheme(theme)}> {theme} </p>
+                <h1>{name}</h1>
+                <br/>
                 <button onClick={onClose}>Close</button>
             </div>
         </div>);

@@ -32,9 +32,7 @@ function App() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedMovie, setSelectedMovie] = useState({})
-
-    console.log('selectedMovie', listMovies);
-
+    
     useEffect(()=> {
         setLoader(true);
 
@@ -78,8 +76,8 @@ function App() {
     
 
     return(
-
-        <div>
+    <ThemeProvider>
+        <Layout>
             {listJsx}
 
             {isModalOpen && <Modal onClose={onClose}>
@@ -89,8 +87,8 @@ function App() {
                 <CardMedia component="img" height="194" image={`https://image.tmdb.org/t/p/original/${selectedMovie.poster_path || ''}`} alt={selectedMovie.title}/>
             </Modal>}
                 <Pagination count={listMovies.total_pages} defaultPage={listMovies.page} color="primary" variant="outlined" onChange={handleChange}/>
-        </div>
-
+        </Layout>
+    </ThemeProvider>
     )
 }
 
