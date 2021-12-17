@@ -1,0 +1,1 @@
+export const LogInPage = () => <h1>LogIn Page</h1>

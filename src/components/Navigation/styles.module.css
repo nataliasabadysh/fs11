@@ -1,0 +1,12 @@
+.linkStyle{
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px;
+    color: #2A363B;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.activeLink{
+    color: #E84A5F
+}

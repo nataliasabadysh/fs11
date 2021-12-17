@@ -1,11 +1,14 @@
-import ReactDOM from 'react-dom';
+// Core
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 
-import { FormExample } from './FormExample';
-import App from './App';
-import './theme/index.css';
+// Pages
+import App from "./App";
 
-
-ReactDOM.render(
-    <FormExample />,
-  document.getElementById('root')
+render(
+  <BrowserRouter>
+      <App />
+  </BrowserRouter>,
+  document.getElementById("root")
 );
