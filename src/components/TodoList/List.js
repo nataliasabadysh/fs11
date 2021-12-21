@@ -78,22 +78,6 @@ export const TodoList = () => {
 
         <div style={{ width: 700, margin: '0 auto', marginTop: 40}}> 
             <h1 style={{ textTransform: 'uppercase', paddingBottom: 50,}}>contacts list</h1>
-
-            <Input label="Search phone number" handleChange={(e)=> setFilterValue(e.target.value)} />
-
-            <div style={{ paddingTop: 50 }} >
-                    <Box component="div">
-                        <Input label="Enter number" value={value} handleChange={handleValueChange} type="number"/>
-                        <Button lable="Save" onClick={onSave} disabled={value.length < 1}/>
-                    </Box>
-            </div>
-
-            <ul>
-                {
-                    visibleTodos && visibleTodos.map(item=> <TodoItem key={item.id} todo={item} onDelete={onDelete} onUpdate={onUpdate} onComleted={onComleted} />) 
-                }
-            </ul>
-
         </div>
 
     )
