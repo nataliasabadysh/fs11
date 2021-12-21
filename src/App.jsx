@@ -1,28 +1,35 @@
-// Instruments
-import './theme/index.css';
+// Core
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+// Components
 import { TodoList } from './components/TodoList/List';
-import { HomePage } from './pages/Home';
 import { Navigation } from './components/Navigation';
 
-const Dashboard = () => <>dashboard</>
+// Instruments
+import './theme/index.css';
+import { PostsPage } from './pages/Posts';
+import { PostPage } from './pages/Post';
+
+
+const Dashboard = () => <>Dashboard</>
+
 // Pages 
-
 function App() {
+
     return (
-
         <>
-        {/* <Navigation /> */}
-        <TodoList/>
+            <Navigation />
+                <Routes>  
+                    <Route path="/" element={<TodoList />} /> 
+                    {/* <Route path="/" exact componet={HomePage} />   */}
+                    {/* <Route path="/product" exact componet={Product} />   */}
+                    <Route path='post/:postId' element={<PostPage />} />
+                    <Route path="/dashboard" element={<Dashboard/>} />  
+                    <Route path="/posts" element={<PostsPage/>} />  
+                </Routes>
 
-            {/* <Routes> 
-                <Route path="/" element={<HomePage/>} /> 
-                <Route path="/todos" element={<TodoList/>} />  
-                <Route path="/dashboard" element={<Dashboard/>} />  
-            </Routes>
-
-        <h1 style={{ padding: 100 }}>Footer</h1> */}
+            {/* <Footer /> */}
         </>
     )
 }

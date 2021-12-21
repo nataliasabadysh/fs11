@@ -1,29 +1,33 @@
-import { NavLink, Link } from "react-router-dom";
-import { NavStyled } from "./styles";
+import { NavLink } from "react-router-dom";
+import { ContainerStyle } from "./styles";
 import styles from "./styles.module.css";
 
 export const Navigation = () => {
 
   return (
-    <NavStyled>
+        <ContainerStyle>
             <NavLink
               exact
-              to="/todos" // href
-              activeClassName="selected"
-              className="link"
+              to="/"
+              className={({ isActive })=> isActive ? styles.active_link: styles.inactive_link}
             >
               Todo page
             </NavLink>
-
             <NavLink
               exact
-              to="/dashboard" // href
-              activeClassName="selected"
-              className="link"
+              to="/dashboard"
+              className={({ isActive })=> isActive ? styles.active_link: styles.inactive_link}
             >
               Dashboard
             </NavLink>    
+            <NavLink
+              exact
+              to="/posts"
+              className={({ isActive })=> isActive ? styles.active_link: styles.inactive_link}
+            >
+              Posts
+            </NavLink>    
             
-          </NavStyled>
+        </ContainerStyle>
   );
 };

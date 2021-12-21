@@ -6,6 +6,7 @@ import { Box } from '@mui/system';
 import { Input } from '../../common/Input/Input';
 import { Button } from '../../common/Button/Button';
 import storage from '../../utils/storage';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export const TodoList = () => {
@@ -39,9 +40,19 @@ export const TodoList = () => {
             completed: false 
         }
         
-        setTodos((prevState)=> {
-            return [...prevState, data]
-        });
+        const findContact = todos.find(item => item.name === value);
+
+        if(!findContact){
+            setTodos((prevState)=> {
+                return [...prevState, data]
+            });
+        }
+        else {
+            toast.error(`Number ${value} already exist`)
+        }
+
+
+
         resetValue();
     }
 
@@ -65,14 +76,15 @@ export const TodoList = () => {
 
     return(
 
-        <div style={{ width: 700, margin: '0 auto'}}> 
+        <div style={{ width: 700, margin: '0 auto', marginTop: 40}}> 
+            <h1 style={{ textTransform: 'uppercase', paddingBottom: 50,}}>contacts list</h1>
 
-            <Input label="Search ... " handleChange={(e)=> setFilterValue(e.target.value)}/>
+            <Input label="Search phone number" handleChange={(e)=> setFilterValue(e.target.value)} />
 
             <div style={{ paddingTop: 50 }} >
                     <Box component="div">
-                        <Input label="Todo name" value={value} handleChange={handleValueChange}/>
-                        <Button lable="Save" onClick={onSave} />
+                        <Input label="Enter number" value={value} handleChange={handleValueChange} type="number"/>
+                        <Button lable="Save" onClick={onSave} disabled={value.length < 1}/>
                     </Box>
             </div>
 
